@@ -10,4 +10,4 @@ The project report is in /report
 
 To run datasets, open the .ipynb notebooks.
 
-Submitted by: Ashutos Rabia, Paarth Jindal
+Submitted by: Ashutosh Rabia(220238), Paarth Jindal(220740)

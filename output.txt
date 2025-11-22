@@ -1,0 +1,664 @@
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter$ bash scripts/clip/main_gpt.sh oxford_pets vit_b16_c16_ep10_batch1 all zs_
+/home/ashutoshrabia/.test/lib/python3.12/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+Setting fixed seed: 1
+***************
+** Arguments **
+***************
+backbone: 
+config_file: configs/trainers/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1.yaml
+dataset_config_file: configs/datasets/oxford_pets.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: ['DATASET.SUBSAMPLE_CLASSES', 'all']
+output_dir: output/oxford_pets/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1_shots/nctx_csc_ctp/seed1/expzs_/
+resume: 
+root: /home/ashutoshrabia/VDT-Adapter/DATA/
+seed: 1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP_gpt
+transforms: None
+************
+** Config **
+************
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 1
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: OxfordPets
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /home/ashutoshrabia/VDT-Adapter/DATA/
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: ViT-B/16
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 10
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/oxford_pets/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1_shots/nctx_csc_ctp/seed1/expzs_/
+RESUME: 
+SEED: 1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 20
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  CLIP_ADAPTER:
+    RATIO: 0.2
+    WORD_ADAPTER_TYPE: None
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP_gpt
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 2.9.1+cpu
+Is debug build: False
+CUDA used to build PyTorch: None
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 24.04.3 LTS (x86_64)
+GCC version: (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.39
+
+Python version: 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (64-bit runtime)
+Python platform: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+Is CUDA available: False
+CUDA runtime version: No CUDA
+CUDA_MODULE_LOADING set to: N/A
+GPU models and configuration: No CUDA
+Nvidia driver version: No CUDA
+cuDNN version: No CUDA
+Is XPU available: False
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        39 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               20
+On-line CPU(s) list:                  0-19
+Vendor ID:                            GenuineIntel
+Model name:                           13th Gen Intel(R) Core(TM) i7-13700H
+CPU family:                           6
+Model:                                186
+Thread(s) per core:                   2
+Core(s) per socket:                   10
+Socket(s):                            1
+Stepping:                             2
+BogoMIPS:                             5836.82
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize flush_l1d arch_capabilities
+Virtualization:                       VT-x
+Hypervisor vendor:                    Microsoft
+Virtualization type:                  full
+L1d cache:                            480 KiB (10 instances)
+L1i cache:                            320 KiB (10 instances)
+L2 cache:                             12.5 MiB (10 instances)
+L3 cache:                             24 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-19
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Vulnerable: No microcode
+Vulnerability Retbleed:               Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+
+Versions of relevant libraries:
+[pip3] flake8==3.7.9
+[pip3] numpy==2.3.5
+[pip3] nvidia-cublas-cu12==12.8.4.1
+[pip3] nvidia-cuda-cupti-cu12==12.8.90
+[pip3] nvidia-cuda-nvrtc-cu12==12.8.93
+[pip3] nvidia-cuda-runtime-cu12==12.8.90
+[pip3] nvidia-cudnn-cu12==9.10.2.21
+[pip3] nvidia-cufft-cu12==11.3.3.83
+[pip3] nvidia-curand-cu12==10.3.9.90
+[pip3] nvidia-cusolver-cu12==11.7.3.90
+[pip3] nvidia-cusparse-cu12==12.5.8.93
+[pip3] nvidia-cusparselt-cu12==0.7.1
+[pip3] nvidia-nccl-cu12==2.27.5
+[pip3] nvidia-nvjitlink-cu12==12.8.93
+[pip3] nvidia-nvtx-cu12==12.8.90
+[pip3] torch==2.9.1+cpu
+[pip3] torchaudio==2.9.1+cpu
+[pip3] torchvision==0.24.1+cpu
+[pip3] triton==3.5.1
+[conda] Could not collect
+        Pillow (12.0.0)
+
+Loading trainer: ZeroshotCLIP_gpt
+Loading dataset: OxfordPets
+Reading split from /home/ashutoshrabia/VDT-Adapter/DATA/oxford_pets/split_zhou_OxfordPets.json
+SUBSAMPLE ALL CLASSES!
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ----------
+Dataset    OxfordPets
+# classes  37
+# train_x  2,944
+# val      736
+# test     3,669
+---------  ----------
+Loading CLIP (backbone: ViT-B/16)
+Prompts: ['a photo of a abyssinian, a type of pet.', 'a photo of a american bulldog, a type of pet.', 'a photo of a american pit bull terrier, a type of pet.', 'a photo of a basset hound, a type of pet.', 'a photo of a beagle, a type of pet.', 'a photo of a bengal, a type of pet.', 'a photo of a birman, a type of pet.', 'a photo of a bombay, a type of pet.', 'a photo of a boxer, a type of pet.', 'a photo of a british shorthair, a type of pet.', 'a photo of a chihuahua, a type of pet.', 'a photo of a egyptian mau, a type of pet.', 'a photo of a english cocker spaniel, a type of pet.', 'a photo of a english setter, a type of pet.', 'a photo of a german shorthaired, a type of pet.', 'a photo of a great pyrenees, a type of pet.', 'a photo of a havanese, a type of pet.', 'a photo of a japanese chin, a type of pet.', 'a photo of a keeshond, a type of pet.', 'a photo of a leonberger, a type of pet.', 'a photo of a maine coon, a type of pet.', 'a photo of a miniature pinscher, a type of pet.', 'a photo of a newfoundland, a type of pet.', 'a photo of a persian, a type of pet.', 'a photo of a pomeranian, a type of pet.', 'a photo of a pug, a type of pet.', 'a photo of a ragdoll, a type of pet.', 'a photo of a russian blue, a type of pet.', 'a photo of a saint bernard, a type of pet.', 'a photo of a samoyed, a type of pet.', 'a photo of a scottish terrier, a type of pet.', 'a photo of a shiba inu, a type of pet.', 'a photo of a siamese, a type of pet.', 'a photo of a sphynx, a type of pet.', 'a photo of a staffordshire bull terrier, a type of pet.', 'a photo of a wheaten terrier, a type of pet.', 'a photo of a yorkshire terrier, a type of pet.']
+dict_keys(['siamese', 'sphynx', 'american_pit_bull_terrier', 'persian', 'miniature_pinscher', 'great_pyrenees', 'egyptian_mau', 'scottish_terrier', 'boxer', 'maine_coon', 'keeshond', 'leonberger', 'german_shorthaired', 'basset_hound', 'chihuahua', 'russian_blue', 'pug', 'japanese_chin', 'pomeranian', 'birman', 'american_bulldog', 'english_cocker_spaniel', 'staffordshire_bull_terrier', 'wheaten_terrier', 'abyssinian', 'yorkshire_terrier', 'english_setter', 'bombay', 'newfoundland', 'saint_bernard', 'havanese', 'ragdoll', 'british_shorthair', 'beagle', 'shiba_inu', 'bengal', 'samoyed'])
+text_features shape torch.Size([37, 512])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 37/37 [51:33<00:00, 83.61s/it]
+=> result
+* total: 3,669
+* correct: 3,358
+* accuracy: 91.5%
+* error: 8.5%
+* macro_f1: 91.5%
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter$ mkdir ucf101
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter$ rmdir ucf101
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter$ cd DATA
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter/DATA$ mkdir ucf101
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter/DATA$ bash scripts/clip/main_gpt.sh ucf101 vit_b16_c16_ep10_batch1 all zs_
+bash: scripts/clip/main_gpt.sh: No such file or directory
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter/DATA$ cd 
+(.test) ashutoshrabia@AcerSwiftGo:~$ cd VDT-Adapter
+(.test) ashutoshrabia@AcerSwiftGo:~/VDT-Adapter$ bash scripts/clip/main_gpt.sh ucf101 vit_b16_c16_ep10_batch1 all zs_
+/home/ashutoshrabia/.test/lib/python3.12/site-packages/outdated/__init__.py:36: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+Setting fixed seed: 1
+***************
+** Arguments **
+***************
+backbone: 
+config_file: configs/trainers/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1.yaml
+dataset_config_file: configs/datasets/ucf101.yaml
+eval_only: True
+head: 
+load_epoch: None
+model_dir: 
+no_train: False
+opts: ['DATASET.SUBSAMPLE_CLASSES', 'all']
+output_dir: output/ucf101/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1_shots/nctx_csc_ctp/seed1/expzs_/
+resume: 
+root: /home/ashutoshrabia/VDT-Adapter/DATA/
+seed: 1
+source_domains: None
+target_domains: None
+trainer: ZeroshotCLIP_gpt
+transforms: None
+************
+** Config **
+************
+DATALOADER:
+  K_TRANSFORMS: 1
+  NUM_WORKERS: 8
+  RETURN_IMG0: False
+  TEST:
+    BATCH_SIZE: 100
+    SAMPLER: SequentialSampler
+  TRAIN_U:
+    BATCH_SIZE: 32
+    N_DOMAIN: 0
+    N_INS: 16
+    SAME_AS_X: True
+    SAMPLER: RandomSampler
+  TRAIN_X:
+    BATCH_SIZE: 1
+    N_DOMAIN: 0
+    N_INS: 16
+    SAMPLER: RandomSampler
+DATASET:
+  ALL_AS_UNLABELED: False
+  CIFAR_C_LEVEL: 1
+  CIFAR_C_TYPE: 
+  NAME: UCF101
+  NUM_LABELED: -1
+  NUM_SHOTS: -1
+  ROOT: /home/ashutoshrabia/VDT-Adapter/DATA/
+  SOURCE_DOMAINS: ()
+  STL10_FOLD: -1
+  SUBSAMPLE_CLASSES: all
+  TARGET_DOMAINS: ()
+  VAL_PERCENT: 0.1
+INPUT:
+  COLORJITTER_B: 0.4
+  COLORJITTER_C: 0.4
+  COLORJITTER_H: 0.1
+  COLORJITTER_S: 0.4
+  CROP_PADDING: 4
+  CUTOUT_LEN: 16
+  CUTOUT_N: 1
+  GB_K: 21
+  GB_P: 0.5
+  GN_MEAN: 0.0
+  GN_STD: 0.15
+  INTERPOLATION: bicubic
+  NO_TRANSFORM: False
+  PIXEL_MEAN: [0.48145466, 0.4578275, 0.40821073]
+  PIXEL_STD: [0.26862954, 0.26130258, 0.27577711]
+  RANDAUGMENT_M: 10
+  RANDAUGMENT_N: 2
+  RGS_P: 0.2
+  RRCROP_SCALE: (0.08, 1.0)
+  SIZE: (224, 224)
+  TRANSFORMS: ('random_resized_crop', 'random_flip', 'normalize')
+MODEL:
+  BACKBONE:
+    NAME: ViT-B/16
+    PRETRAINED: True
+  HEAD:
+    ACTIVATION: relu
+    BN: True
+    DROPOUT: 0.0
+    HIDDEN_LAYERS: ()
+    NAME: 
+  INIT_WEIGHTS: 
+OPTIM:
+  ADAM_BETA1: 0.9
+  ADAM_BETA2: 0.999
+  BASE_LR_MULT: 0.1
+  GAMMA: 0.1
+  LR: 0.002
+  LR_SCHEDULER: cosine
+  MAX_EPOCH: 10
+  MOMENTUM: 0.9
+  NAME: sgd
+  NEW_LAYERS: ()
+  RMSPROP_ALPHA: 0.99
+  SGD_DAMPNING: 0
+  SGD_NESTEROV: False
+  STAGED_LR: False
+  STEPSIZE: (-1,)
+  WARMUP_CONS_LR: 1e-05
+  WARMUP_EPOCH: 1
+  WARMUP_MIN_LR: 1e-05
+  WARMUP_RECOUNT: True
+  WARMUP_TYPE: constant
+  WEIGHT_DECAY: 0.0005
+OUTPUT_DIR: output/ucf101/ZeroshotCLIP_gpt/vit_b16_c16_ep10_batch1_shots/nctx_csc_ctp/seed1/expzs_/
+RESUME: 
+SEED: 1
+TEST:
+  COMPUTE_CMAT: False
+  EVALUATOR: Classification
+  FINAL_MODEL: last_step
+  NO_TEST: False
+  PER_CLASS_RESULT: False
+  SPLIT: test
+TRAIN:
+  CHECKPOINT_FREQ: 0
+  COUNT_ITER: train_x
+  PRINT_FREQ: 20
+TRAINER:
+  CDAC:
+    CLASS_LR_MULTI: 10
+    P_THRESH: 0.95
+    RAMPUP_COEF: 30
+    RAMPUP_ITRS: 1000
+    STRONG_TRANSFORMS: ()
+    TOPK_MATCH: 5
+  CLIP_ADAPTER:
+    RATIO: 0.2
+    WORD_ADAPTER_TYPE: None
+  COCOOP:
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  COOP:
+    CLASS_TOKEN_POSITION: end
+    CSC: False
+    CTX_INIT: 
+    N_CTX: 16
+    PREC: fp16
+  CROSSGRAD:
+    ALPHA_D: 0.5
+    ALPHA_F: 0.5
+    EPS_D: 1.0
+    EPS_F: 1.0
+  DAEL:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DAELDG:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 0.5
+  DDAIG:
+    ALPHA: 0.5
+    CLAMP: False
+    CLAMP_MAX: 1.0
+    CLAMP_MIN: -1.0
+    G_ARCH: 
+    LMDA: 0.3
+    WARMUP: 0
+  DOMAINMIX:
+    ALPHA: 1.0
+    BETA: 1.0
+    TYPE: crossdomain
+  ENTMIN:
+    LMDA: 0.001
+  FIXMATCH:
+    CONF_THRE: 0.95
+    STRONG_TRANSFORMS: ()
+    WEIGHT_U: 1.0
+  M3SDA:
+    LMDA: 0.5
+    N_STEP_F: 4
+  MCD:
+    N_STEP_F: 4
+  MEANTEACHER:
+    EMA_ALPHA: 0.999
+    RAMPUP: 5
+    WEIGHT_U: 1.0
+  MIXMATCH:
+    MIXUP_BETA: 0.75
+    RAMPUP: 20000
+    TEMP: 2.0
+    WEIGHT_U: 100.0
+  MME:
+    LMDA: 0.1
+  NAME: ZeroshotCLIP_gpt
+  SE:
+    CONF_THRE: 0.95
+    EMA_ALPHA: 0.999
+    RAMPUP: 300
+USE_CUDA: True
+VERBOSE: True
+VERSION: 1
+Collecting env info ...
+** System info **
+PyTorch version: 2.9.1+cpu
+Is debug build: False
+CUDA used to build PyTorch: None
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 24.04.3 LTS (x86_64)
+GCC version: (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.39
+
+Python version: 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0] (64-bit runtime)
+Python platform: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+Is CUDA available: False
+CUDA runtime version: No CUDA
+CUDA_MODULE_LOADING set to: N/A
+GPU models and configuration: No CUDA
+Nvidia driver version: No CUDA
+cuDNN version: No CUDA
+Is XPU available: False
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        39 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               20
+On-line CPU(s) list:                  0-19
+Vendor ID:                            GenuineIntel
+Model name:                           13th Gen Intel(R) Core(TM) i7-13700H
+CPU family:                           6
+Model:                                186
+Thread(s) per core:                   2
+Core(s) per socket:                   10
+Socket(s):                            1
+Stepping:                             2
+BogoMIPS:                             5836.82
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize flush_l1d arch_capabilities
+Virtualization:                       VT-x
+Hypervisor vendor:                    Microsoft
+Virtualization type:                  full
+L1d cache:                            480 KiB (10 instances)
+L1i cache:                            320 KiB (10 instances)
+L2 cache:                             12.5 MiB (10 instances)
+L3 cache:                             24 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-19
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Vulnerable: No microcode
+Vulnerability Retbleed:               Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+
+Versions of relevant libraries:
+[pip3] flake8==3.7.9
+[pip3] numpy==2.3.5
+[pip3] nvidia-cublas-cu12==12.8.4.1
+[pip3] nvidia-cuda-cupti-cu12==12.8.90
+[pip3] nvidia-cuda-nvrtc-cu12==12.8.93
+[pip3] nvidia-cuda-runtime-cu12==12.8.90
+[pip3] nvidia-cudnn-cu12==9.10.2.21
+[pip3] nvidia-cufft-cu12==11.3.3.83
+[pip3] nvidia-curand-cu12==10.3.9.90
+[pip3] nvidia-cusolver-cu12==11.7.3.90
+[pip3] nvidia-cusparse-cu12==12.5.8.93
+[pip3] nvidia-cusparselt-cu12==0.7.1
+[pip3] nvidia-nccl-cu12==2.27.5
+[pip3] nvidia-nvjitlink-cu12==12.8.93
+[pip3] nvidia-nvtx-cu12==12.8.90
+[pip3] torch==2.9.1+cpu
+[pip3] torchaudio==2.9.1+cpu
+[pip3] torchvision==0.24.1+cpu
+[pip3] triton==3.5.1
+[conda] Could not collect
+        Pillow (12.0.0)
+
+Loading trainer: ZeroshotCLIP_gpt
+Loading dataset: UCF101
+Reading split from /home/ashutoshrabia/VDT-Adapter/DATA/ucf101/split_zhou_UCF101.json
+SUBSAMPLE ALL CLASSES!
+Building transform_train
++ random resized crop (size=(224, 224), scale=(0.08, 1.0))
++ random flip
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+---------  ------
+Dataset    UCF101
+# classes  101
+# train_x  7,639
+# val      1,898
+# test     3,783
+---------  ------
+Loading CLIP (backbone: ViT-B/16)
+Prompts: ['a photo of a person doing Apply Eye Makeup.', 'a photo of a person doing Apply Lipstick.', 'a photo of a person doing Archery.', 'a photo of a person doing Baby Crawling.', 'a photo of a person doing Balance Beam.', 'a photo of a person doing Band Marching.', 'a photo of a person doing Baseball Pitch.', 'a photo of a person doing Basketball.', 'a photo of a person doing Basketball Dunk.', 'a photo of a person doing Bench Press.', 'a photo of a person doing Biking.', 'a photo of a person doing Billiards.', 'a photo of a person doing Blow Dry Hair.', 'a photo of a person doing Blowing Candles.', 'a photo of a person doing Body Weight Squats.', 'a photo of a person doing Bowling.', 'a photo of a person doing Boxing Punching Bag.', 'a photo of a person doing Boxing Speed Bag.', 'a photo of a person doing Breast Stroke.', 'a photo of a person doing Brushing Teeth.', 'a photo of a person doing Clean And Jerk.', 'a photo of a person doing Cliff Diving.', 'a photo of a person doing Cricket Bowling.', 'a photo of a person doing Cricket Shot.', 'a photo of a person doing Cutting In Kitchen.', 'a photo of a person doing Diving.', 'a photo of a person doing Drumming.', 'a photo of a person doing Fencing.', 'a photo of a person doing Field Hockey Penalty.', 'a photo of a person doing Floor Gymnastics.', 'a photo of a person doing Frisbee Catch.', 'a photo of a person doing Front Crawl.', 'a photo of a person doing Golf Swing.', 'a photo of a person doing Haircut.', 'a photo of a person doing Hammering.', 'a photo of a person doing Hammer Throw.', 'a photo of a person doing Handstand Pushups.', 'a photo of a person doing Handstand Walking.', 'a photo of a person doing Head Massage.', 'a photo of a person doing High Jump.', 'a photo of a person doing Horse Race.', 'a photo of a person doing Horse Riding.', 'a photo of a person doing Hula Hoop.', 'a photo of a person doing Ice Dancing.', 'a photo of a person doing Javelin Throw.', 'a photo of a person doing Juggling Balls.', 'a photo of a person doing Jumping Jack.', 'a photo of a person doing Jump Rope.', 'a photo of a person doing Kayaking.', 'a photo of a person doing Knitting.', 'a photo of a person doing Long Jump.', 'a photo of a person doing Lunges.', 'a photo of a person doing Military Parade.', 'a photo of a person doing Mixing.', 'a photo of a person doing Mopping Floor.', 'a photo of a person doing Nunchucks.', 'a photo of a person doing Parallel Bars.', 'a photo of a person doing Pizza Tossing.', 'a photo of a person doing Playing Cello.', 'a photo of a person doing Playing Daf.', 'a photo of a person doing Playing Dhol.', 'a photo of a person doing Playing Flute.', 'a photo of a person doing Playing Guitar.', 'a photo of a person doing Playing Piano.', 'a photo of a person doing Playing Sitar.', 'a photo of a person doing Playing Tabla.', 'a photo of a person doing Playing Violin.', 'a photo of a person doing Pole Vault.', 'a photo of a person doing Pommel Horse.', 'a photo of a person doing Pull Ups.', 'a photo of a person doing Punch.', 'a photo of a person doing Push Ups.', 'a photo of a person doing Rafting.', 'a photo of a person doing Rock Climbing Indoor.', 'a photo of a person doing Rope Climbing.', 'a photo of a person doing Rowing.', 'a photo of a person doing Salsa Spin.', 'a photo of a person doing Shaving Beard.', 'a photo of a person doing Shotput.', 'a photo of a person doing Skate Boarding.', 'a photo of a person doing Skiing.', 'a photo of a person doing Skijet.', 'a photo of a person doing Sky Diving.', 'a photo of a person doing Soccer Juggling.', 'a photo of a person doing Soccer Penalty.', 'a photo of a person doing Still Rings.', 'a photo of a person doing Sumo Wrestling.', 'a photo of a person doing Surfing.', 'a photo of a person doing Swing.', 'a photo of a person doing Table Tennis Shot.', 'a photo of a person doing Tai Chi.', 'a photo of a person doing Tennis Swing.', 'a photo of a person doing Throw Discus.', 'a photo of a person doing Trampoline Jumping.', 'a photo of a person doing Typing.', 'a photo of a person doing Uneven Bars.', 'a photo of a person doing Volleyball Spiking.', 'a photo of a person doing Walking With Dog.', 'a photo of a person doing Wall Pushups.', 'a photo of a person doing Writing On Board.', 'a photo of a person doing Yo Yo.']
+dict_keys(['soccer_penalty', 'playing_cello', 'billiards', 'handstand_pushups', 'hula_hoop', 'pommel_horse', 'head_massage', 'playing_piano', 'playing_sitar', 'bench_press', 'salsa_spin', 'cliff_diving', 'playing_flute', 'brushing_teeth', 'lunges', 'blow_dry_hair', 'rowing', 'archery', 'blowing_candles', 'mixing', 'cricket_shot', 'drumming', 'baseball_pitch', 'baby_crawling', 'punch', 'body_weight_squats', 'tai_chi', 'skate_boarding', 'push_ups', 'shotput', 'mopping_floor', 'boxing_punching_bag', 'apply_eye_makeup', 'wall_pushups', 'surfing', 'long_jump', 'juggling_balls', 'haircut', 'skijet', 'military_parade', 'rope_climbing', 'playing_tabla', 'field_hockey_penalty', 'shaving_beard', 'still_rings', 'sky_diving', 'pull_ups', 'walking_with_dog', 'basketball_dunk', 'boxing_speed_bag', 'javelin_throw', 'nunchucks', 'hammer_throw', 'diving', 'skiing', 'clean_and_jerk', 'playing_guitar', 'table_tennis_shot', 'basketball', 'jump_rope', 'horse_riding', 'throw_discus', 'cricket_bowling', 'horse_race', 'typing', 'ice_dancing', 'knitting', 'floor_gymnastics', 'breast_stroke', 'high_jump', 'parallel_bars', 'fencing', 'playing_violin', 'golf_swing', 'band_marching', 'playing_dhol', 'handstand_walking', 'writing_on_board', 'rock_climbing_indoor', 'hammering', 'balance_beam', 'frisbee_catch', 'swing', 'pole_vault', 'bowling', 'volleyball_spiking', 'front_crawl', 'kayaking', 'uneven_bars', 'tennis_swing', 'playing_daf', 'cutting_in_kitchen', 'trampoline_jumping', 'biking', 'rafting', 'soccer_juggling', 'jumping_jack', 'apply_lipstick', 'pizza_tossing', 'sumo_wrestling', 'yo_yo'])
+text_features shape torch.Size([101, 512])
+Loading evaluator: Classification
+Note that load_model() is skipped as no pretrained model is given (ignore this if it's done on purpose)
+Evaluate on the *test* set
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████| 38/38 [58:17<00:00, 92.05s/it]
+=> result
+* total: 3,783
+* correct: 2,525
+* accuracy: 66.7%
+* error: 33.3%
+* macro_f1: 64.1%

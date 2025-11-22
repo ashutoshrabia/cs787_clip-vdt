@@ -4,9 +4,8 @@ This project reproduces two datasets from the paper:
 - Oxford Pets
 - FGVC Aircraft
 
-The code is in /code  
-The results are in /results  
-The project report is in /report  
+Source code contains the reproduced results from the paper
+project_script.ipynb contains our implementation of the clip zero shot classification
 
 To run datasets, open the .ipynb notebooks.
 

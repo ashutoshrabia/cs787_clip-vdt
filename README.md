@@ -1,4 +1,4 @@
- # Reproducing GPT-Generated Prompts for Zero-Shot CLIP
+ # Implemented CLIP Zero-Shot classification using GPT generated VDT's
 
 This project reproduces two datasets from the paper:
 - Oxford Pets
